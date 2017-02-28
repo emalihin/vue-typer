@@ -37,6 +37,11 @@ export default {
     /**
      * Text(s) to type.
      */
+    callback: {
+      type: function,
+      required: false,
+      default: false
+    },
     text: {
       type: [String, Array],
       required: true,
@@ -326,6 +331,9 @@ export default {
       if (this.onLastWord) {
         if (this.eraseOnComplete || this.shouldRepeat) {
           this.startErasing()
+          if (this.callback) {
+            callback(s)
+          }
         } else {
           this.onComplete()
         }
